@@ -112,6 +112,11 @@ export default function TimePage() {
     }
     setEditing(null);
   }
+  async function removeEntry(id: string) {
+    if (!confirm("Delete this time entry? This can't be undone.")) return;
+    await del.mutateAsync(id);
+    setEditing(null);
+  }
 
   return (
     <>
@@ -251,7 +256,8 @@ export default function TimePage() {
                         <Pencil size={14} />
                       </button>
                       <button
-                        onClick={() => del.mutate(e.id)}
+                        onClick={() => removeEntry(e.id)}
+                        aria-label="Delete time entry"
                         className="press grid h-8 w-8 place-items-center rounded-full text-[var(--red)]"
                       >
                         <Trash2 size={14} />
@@ -271,9 +277,20 @@ export default function TimePage() {
         onOpenChange={(v) => !v && setEditing(null)}
         title={isNew ? "Add time entry" : "Edit time entry"}
         footer={
-          <Button size="block" onClick={saveEditor} disabled={create.isPending || update.isPending}>
-            Save entry
-          </Button>
+          <div className="flex gap-3">
+            {!isNew && editing && (
+              <Button variant="danger" onClick={() => removeEntry(editing.id)} disabled={del.isPending}>
+                <Trash2 size={16} /> Delete
+              </Button>
+            )}
+            <Button
+              className="flex-1"
+              onClick={saveEditor}
+              disabled={create.isPending || update.isPending}
+            >
+              Save entry
+            </Button>
+          </div>
         }
       >
         {editing && (
