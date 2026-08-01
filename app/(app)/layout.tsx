@@ -1,6 +1,5 @@
 import { BottomNav } from "@/components/BottomNav";
 import { SheetHost } from "@/components/SheetHost";
-import { StatusBar } from "@/components/StatusBar";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -27,7 +26,6 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           overflow: "hidden",
         }}
       >
-        <StatusBar />
         <main style={{ flex: 1, overflowY: "auto", paddingBottom: 24 }} className="no-scrollbar">
           {children}
         </main>
