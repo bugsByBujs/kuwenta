@@ -1,26 +1,244 @@
 @import "tailwindcss";
 
+/* ============================================================
+   Kuwenta — Starbucks-Inspired Design System tokens
+   (transcribed from claude.ai/design project b9b8f455…)
+   Root is 62.5% so 1rem = 10px and the authored rem values map
+   1:1 to px. Tailwind's --spacing is set to 0.4rem to keep a
+   clean 4px grid despite the shrunk root.
+   ============================================================ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* colors */
+  --green-starbucks:#006241;
+  --green-accent:#00754a;
+  --green-house:#1e3932;
+  --green-uplift:#2b5148;
+  --green-light:#d4e9e2;
+  --gold:#cba258;
+  --gold-light:#dfc49d;
+  --gold-lightest:#faf6ee;
+  --white:#ffffff;
+  --neutral-cool:#f9f9f9;
+  --neutral-warm:#f2f0eb;
+  --ceramic:#edebe9;
+  --black:#000000;
+  --input-border:#d6dbde;
+  --hairline:#e7e7e7;
+  --red:#c82014;
+  --yellow:#fbbc05;
+  --red-tint:hsl(4 82% 43% / 5%);
+  --green-tint:hsl(160 32% 87% / 33%);
+  --text-black:rgba(0,0,0,.87);
+  --text-black-soft:rgba(0,0,0,.58);
+  --text-white:rgba(255,255,255,1);
+  --text-white-soft:rgba(255,255,255,.70);
+  --rewards-green:#33433d;
+  --surface-page:var(--neutral-warm);
+  --surface-card:var(--white);
+  --surface-band:var(--green-house);
+  --surface-utility:var(--ceramic);
+  --cta-primary-bg:var(--green-accent);
+  --cta-primary-text:var(--white);
+  --heading-brand:var(--green-starbucks);
+
+  /* typography */
+  --font-sans:var(--font-inter),"Inter",-apple-system,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  --font-serif:var(--font-lora),"Lora",Georgia,serif;
+  --font-script:var(--font-kalam),"Kalam",cursive;
+  --tracking-normal:-0.01em;
+  --tracking-loose:0.1em;
+  --tracking-looser:0.15em;
+  --lh-normal:1.5;
+  --lh-compact:1.2;
+
+  /* spacing / radius */
+  --space-1:.4rem;--space-2:.8rem;--space-3:1.6rem;--space-4:2.4rem;--space-5:3.2rem;
+  --space-6:4rem;--space-7:4.8rem;--space-8:5.6rem;--space-9:6.4rem;
+  --radius-card:12px;--radius-pill:50px;--radius-input:4px;--radius-circle:50%;
+
+  /* elevation / motion */
+  --shadow-card:0 0 .5px rgba(0,0,0,.14),0 1px 1px rgba(0,0,0,.24);
+  --shadow-nav:0 1px 3px rgba(0,0,0,.1),0 2px 2px rgba(0,0,0,.06),0 0 2px rgba(0,0,0,.07);
+  --shadow-frap-base:0 0 6px rgba(0,0,0,.24);
+  --shadow-frap-ambient:0 8px 12px rgba(0,0,0,.14);
+  --ease-expander:cubic-bezier(0.25,0.46,0.45,0.94);
+  --ease-spring:cubic-bezier(0.32,2.32,0.61,0.27);
+  --duration-btn:0.2s;
+  --active-scale:0.95;
 }
 
+html { font-size: 62.5%; }
+
+/* ---- Tailwind v4 theme mapping ---- */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --spacing: 0.4rem;                 /* 4px grid at 62.5% root */
+
+  --color-brand: var(--green-starbucks);
+  --color-accent: var(--green-accent);
+  --color-house: var(--green-house);
+  --color-uplift: var(--green-uplift);
+  --color-green-light: var(--green-light);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-lightest: var(--gold-lightest);
+  --color-cream: var(--neutral-warm);
+  --color-ceramic: var(--ceramic);
+  --color-cool: var(--neutral-cool);
+  --color-card: var(--white);
+  --color-band: var(--green-house);
+  --color-hairline: var(--hairline);
+  --color-input-border: var(--input-border);
+  --color-danger: var(--red);
+  --color-warn: var(--yellow);
+  --color-ink: var(--text-black);
+  --color-ink-soft: var(--text-black-soft);
+  --color-on-dark: var(--text-white);
+  --color-on-dark-soft: var(--text-white-soft);
+
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+  --font-script: var(--font-script);
+
+  --text-1:1.3rem; --text-2:1.4rem; --text-3:1.6rem; --text-4:1.9rem; --text-5:2.4rem;
+  --text-8:2.8rem; --text-9:3.6rem; --text-10:5rem;
+
+  --tracking-normal:-0.01em;
+  --tracking-loose:0.1em;
+  --tracking-looser:0.15em;
+
+  --radius-card:12px;
+  --radius-pill:50px;
+  --radius-input:4px;
+
+  --shadow-card:0 0 .5px rgba(0,0,0,.14),0 1px 1px rgba(0,0,0,.24);
+  --shadow-nav:0 1px 3px rgba(0,0,0,.1),0 2px 2px rgba(0,0,0,.06),0 0 2px rgba(0,0,0,.07);
+  --shadow-frap:0 0 6px rgba(0,0,0,.24),0 8px 12px rgba(0,0,0,.14);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    background: var(--surface-page);
+    color: var(--text-black);
+    font-family: var(--font-sans);
+    font-size: 1.6rem;
+    line-height: var(--lh-normal);
+    letter-spacing: var(--tracking-normal);
+    -webkit-font-smoothing: antialiased;
   }
+  h1 { font-size:2.4rem; font-weight:600; line-height:3.6rem; color:var(--heading-brand); letter-spacing:-.16px; margin:0; }
+  h2 { font-size:2.4rem; font-weight:400; line-height:3.6rem; color:var(--text-black); letter-spacing:-.16px; margin:0; }
+  h3 { font-size:1.9rem; font-weight:600; line-height:2.6rem; margin:0; letter-spacing:-.01em; }
+  * { -webkit-tap-highlight-color: transparent; }
+  button { font-family: inherit; }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ---- component helpers built on the tokens ---- */
+@layer components {
+  .card {
+    background: var(--surface-card);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+  }
+  .pill { border-radius: var(--radius-pill); }
+  .tabular { font-variant-numeric: tabular-nums; }
+  .press { transition: transform var(--duration-btn) ease; }
+  .press:active { transform: scale(var(--active-scale)); }
+  .hairline-t { border-top: 1px solid var(--hairline); }
+  .hairline-b { border-bottom: 1px solid var(--hairline); }
+  /* mobile app frame */
+  .app-frame {
+    width: 100%;
+    max-width: 430px;
+    margin-inline: auto;
+    min-height: 100dvh;
+    background: var(--surface-page);
+    position: relative;
+  }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+/* ============================================================
+   Native-app motion
+   ============================================================ */
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes sheetin {
+  0%   { transform: translateY(100%); }
+  100% { transform: translateY(0); }
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes riseSm {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes screenIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.992); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes pop {
+  0% { transform: scale(0.8); }
+  60% { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to   { background-position: 200% 0; }
+}
+
+/* tactile press feedback on every tappable surface */
+button,
+a,
+[data-tap],
+[role="button"] {
+  transition: transform 0.12s var(--ease-expander), opacity 0.12s ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+button:active,
+a[href]:active,
+[data-tap]:active,
+[role="button"]:active {
+  transform: scale(0.96);
+}
+/* inputs shouldn't shrink on focus/tap */
+input:active, select:active, textarea:active, label:active { transform: none; }
+
+/* smooth momentum scrolling in the app frame */
+.no-scrollbar,
+main {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+}
+
+/* helpers */
+.screen-in { animation: screenIn 0.34s var(--ease-expander) both; }
+.rise-in { animation: rise 0.4s var(--ease-expander) both; }
+.slide-in { animation: slideInRight 0.32s var(--ease-expander) both; }
+.pop-in { animation: pop 0.32s var(--ease-spring) both; }
+
+/* stagger: each direct child rises slightly later */
+.stagger > * { animation: riseSm 0.4s var(--ease-expander) both; }
+.stagger > *:nth-child(1) { animation-delay: 0.03s; }
+.stagger > *:nth-child(2) { animation-delay: 0.07s; }
+.stagger > *:nth-child(3) { animation-delay: 0.11s; }
+.stagger > *:nth-child(4) { animation-delay: 0.15s; }
+.stagger > *:nth-child(5) { animation-delay: 0.19s; }
+.stagger > *:nth-child(6) { animation-delay: 0.23s; }
+.stagger > *:nth-child(7) { animation-delay: 0.27s; }
+.stagger > *:nth-child(8) { animation-delay: 0.31s; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  button:active, a[href]:active, [data-tap]:active, [role="button"]:active { transform: none; }
 }

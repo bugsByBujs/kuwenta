@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd \"\\\\\\\\\\\\\\\\wsl.localhost\\\\\\\\Ubuntu\\\\\\\\home\\\\\\\\lifesaver-qa\\\\\\\\workspace\\\\\\\\kuwenta_v2\")",
+      "Bash(ls -la)",
+      "mcp__supabase__list_organizations",
+      "Read(///wsl.localhost/Ubuntu/home/lifesaver-qa/workspace/**)",
+      "Bash(npx --yes create-next-app@latest . --typescript --tailwind --app --eslint --no-src-dir --import-alias \"@/*\" --use-npm --no-turbopack --yes)",
+      "mcp__supabase__get_project",
+      "Bash(wsl.exe *)",
+      "mcp__supabase__restore_project",
+      "mcp__supabase__apply_migration",
+      "mcp__supabase__get_publishable_keys",
+      "mcp__supabase__get_project_url",
+      "Bash(diff CLAUDE.MD CLAUDE.md)",
+      "Bash(sed -i 's/\"name\": \"kuwenta_tmp\"/\"name\": \"kuwenta\"/' package.json)",
+      "mcp__supabase__generate_typescript_types",
+      "Bash(rm -f middleware.ts)",
+      "mcp__supabase__execute_sql",
+      "Bash(rm -f components/AuthForm.tsx)",
+      "Bash(rm -f components/AccountCard.tsx components/BillRow.tsx)"
+    ]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "supabase",
+    "vercel",
+    "github"
+  ]
+}
